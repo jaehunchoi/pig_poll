@@ -145,10 +145,10 @@
                 if (step_val <= 0) {
                     step.value = 1; // 0단계 이하 없음   
                 }
-                if (step_val >= 5) {
-                    step.value = 5; // 5단계 까지만   
+                if (step_val >= 6) {
+                    step.value = 6; // 5단계 까지만   
                 }
-                if (step_val == 5) {
+                if (step_val == 6) {
                     var total_point = document.getElementById("total_point");
                     total_point_val = parseInt(total_point.value);
                     var outcome = document.getElementById("outcome");
@@ -193,6 +193,12 @@
                     cs2.value = "치킨!"
                     cs3.value = "치킨에 떡뽁이 ㄱㄱ"
                     cs4.value = "치킨 떡뽁이 피자 회 곱창 ㄱㄱ "
+                } else if (step_val == 6) {
+                    question.value = "결과 페이지"
+                    cs1.value = ""
+                    cs2.value = ""
+                    cs3.value = ""
+                    cs4.value = ""
                 }
 
             }
