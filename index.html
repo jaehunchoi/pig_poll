@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" <meta name="viewport" content="width=device-width" , initial-scale="1">
+    <title>hoons music</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+
+</head>
+
+<body>
+    <style type="text/css">
+        .jumbotron {
+            background-image: url('images/background.jpg');
+            text-shadow: white 0.2em 0.2em 0.2em;
+            color: black;
+        }
+    </style>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type-"button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">hoons music</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">소개
+                            <span class="sr-only"></span></a></li>
+                    <li><a href="#">신곡</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            장르
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">K-POP</a></li>
+                            <li><a href="#">POP</a></li>
+                            <li><a href="#">트로트</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="검색어를 입력하세요">
+                        <button type="summit" class="btn btn-default">검색</button>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        -3ㅈ2ㅊ ``">
+                        접속
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">로그인</a></li>
+                            <li><a href="#">회원가입</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+
+        <div class="jumbotron">
+            <h3 class="text-center">당신의 돼지력은??</h3>
+            <input type="text" id="question" value="너는 물만 먹어도 살찐니.??" size="100">/>
+
+            <div>
+                <input class="text-center" type="button" onclick="point_btn(1)" id="cs1" value="아니다 난 많이 먹어서 살찜" />
+                <input class="text-center" type="button" onclick="point_btn(2)" id="cs2" value="난 적당히 만 먹어도 살찜" />
+            </div>
+            <div>
+                <input class="text-center" type="button" onclick="point_btn(3)" id="cs3" value="난 물만 먹어도 살찜" />
+                <input class="text-center" type="button" onclick="point_btn(4)" id="cs4" value="난 숨만 셔도 살쪄" />
+            </div>
+        </div>>
+        <div>
+
+
+            <h4>점수 : </h4>
+            <input type="button" id="total_point" value="0" />
+        </div>
+        <div>
+            <h4>당신의 돼지력은? : </h4>
+            <input type="text" id="outcome" value="">
+        </div>
+
+        <h4>친구의 돼지력은? : </h4>
+        <input type="text" id="friend_outcome" value="">
+
+        <script type="text/javascript">
+            function point_btn(n) {
+                var total_point = document.getElementById("total_point"); // 폼 선택
+
+                total_point_val = parseInt(total_point.value); // 폼 값을 숫자열로 변환
+                total_point_val += n; // 계산
+                total_point.value = total_point_val; // 계산된 값을 바꾼다
+
+            }
+            window.onload = function getParameterByName() {
+                var name = "pig_point"
+                var friend_outcome = document.getElementById("friend_outcome");
+
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                console.log(results);
+
+                results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                console.log(results[1]);
+                friend_outcome.value = results[1]
+                if (parseInt(friend_outcome.value) > 10) {
+                    friend_outcome.value = "당신은 상돼지 입니다."
+                } else if (parseInt(friend_outcome.value) > 5) {
+                    friend_outcome.value = "너 요즘 먹고 살기 좋아 보여!"
+                } else {
+                    friend_outcome.value = "말랐어 왜캐 ㅜ"
+                }
+
+            }
+
+
+            // 스테이지 버튼
+            function stage_btn(n) {
+
+                var step = document.getElementById("step");
+                var question = document.getElementById("question");
+
+                var cs1 = document.getElementById("cs1");
+                var cs2 = document.getElementById("cs2");
+                var cs3 = document.getElementById("cs3");
+                var cs4 = document.getElementById("cs4");
+
+                step_val = parseInt(step.value); // 폼 값을 숫자열로 변환
+
+                step_val += n;
+
+                step.value = step_val; // 계산된 값 바꿈
+
+                if (step_val <= 0) {
+                    step.value = 1; // 0단계 이하 없음   
+                }
+                if (step_val >= 5) {
+                    step.value = 5; // 5단계 까지만   
+                }
+                if (step_val == 5) {
+                    var total_point = document.getElementById("total_point");
+                    total_point_val = parseInt(total_point.value);
+                    var outcome = document.getElementById("outcome");
+
+                    if (total_point_val > 10) {
+                        outcome.value = "당신은 상돼지 입니다."
+                    } else if (total_point_val > 5) {
+                        outcome.value = "너 요즘 먹고 살기 좋아 보여!"
+                    } else {
+                        outcome.value = "말랐어 왜캐 ㅜ"
+                    }
+                }
+
+
+                if (step_val == 1) {
+                    question.value = "너는 물만 먹어도 살찐니.??"
+                    cs1.value = "아니다 난 많이 먹어서 살찜"
+                    cs2.value = "난 적당히 만 먹어도 살찜"
+                    cs3.value = "난 물만 먹어도 살찜"
+                    cs4.value = "난 숨만 셔도 살쪄"
+                } else if (step_val == 2) {
+                    question.value = "야!! 배달 음식 뭐시켜??"
+                    cs1.value = "나 영화에 집중할래 안먹어 ㅜ"
+                    cs2.value = "나 제로콜라만 아그리고 팝콘은 조금~"
+                    cs3.value = "콜라랑 카라멜 팝콘 먹장!"
+                    cs4.value = "요즘 맥주도 파니깐 맥주에 팝콘이랑 나쵸로 안주로 먹장~"
+                } else if (step_val == 3) {
+                    question.value = "야 삼겹살 다먹었는데 밥 시킬래???"
+                    cs1.value = "ㄴㄴ 난 배부름.. 카페나 가자 아메리카노 땡겨."
+                    cs2.value = "볶음밥 ㄱㄱ 고기는 볶음밥"
+                    cs3.value = "나 냉면이랑 냉면에 먹을 고기 2인분만 더 !"
+                    cs4.value = "고기 질리니깐 2차로 치맥 콜??"
+                } else if (step_val == 4) {
+                    question.value = "으악 버스 끊겼네 어쩌지.."
+                    cs1.value = "걍 걸어가자 날씨도 좋고 굿"
+                    cs2.value = "설빙 하나 때리고 산책겸 걷자"
+                    cs3.value = "택시나 타고 가자 걷기 힘들어 ㅜ"
+                    cs4.value = "차도 끊겼는데 놀다가 택시타고 가자!"
+                } else if (step_val == 5) {
+                    question.value = "야!! 배달 음식 뭐시켜??"
+                    cs1.value = "서브웨이 콜??"
+                    cs2.value = "치킨!"
+                    cs3.value = "치킨에 떡뽁이 ㄱㄱ"
+                    cs4.value = "치킨 떡뽁이 피자 회 곱창 ㄱㄱ "
+                }
+
+            }
+
+            function copyUrl() {
+                if (window.clipboardData.setData('Text', location.href)) {
+                    alert('선택하신 게시물의 고유주소(URL)가 클립보드에 복사되었습니다.\n\Ctrl + V 또는 붙여 넣기를 선택하여 이용하시기 바랍니다.');
+                }
+
+            }
+
+            function CopyUrlToClipboard() {
+                var obShareUrl = document.getElementById("ShareUrl");
+                var total_point = document.getElementById("total_point");
+                obShareUrl.value = window.document.location.href + "?pig_point=" + parseInt(total_point.value); // 현재 URL 을 세팅해 줍니다.
+
+
+                obShareUrl.select(); // 해당 값이 선택되도록 select() 합니다
+
+                document.execCommand("copy"); // 클립보드에 복사합니다.
+
+
+
+                obShareUrl.blur(); // 선택된 것을 다시 선택안된것으로 바꿈니다.
+
+
+
+                alert("URL이 클립보드에 복사되었습니다");
+            }
+        </script>
+        <div>
+
+            <button onclick="copyUrl()">공유하기</button>
+
+            <button onclick="stage_btn(-1)">이전 단계</button>
+
+            <input type="button" id="step" value="1" />
+
+            <button onclick="stage_btn(1)">다음 단계</button>
+
+        </div>
+        <input type="text" id="ShareUrl">
+        <span class="btn-type1"><button OnClick="javascript:CopyUrlToClipboard()">URL 복사</button></span>
+        </p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/choose.js"></script>
+</body>
+
+</html>
